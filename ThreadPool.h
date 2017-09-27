@@ -17,12 +17,11 @@
 #include <mutex>
 #include <condition_variable>
 
-class ThreadPool {
+class ThreadPool
+{
 public:
     ThreadPool   (size_t numberOfThreads);
     ~ThreadPool  ();
-
-    void fun();
     void execute (std::function<void()> const &foo);
 
 private:

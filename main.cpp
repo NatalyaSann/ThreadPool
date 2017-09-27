@@ -23,6 +23,22 @@ void foo()
 
 
 int main() {
+    {
+        std::cerr << "start" << std::endl;
+
+        ThreadPool ttt(2);
+
+        ttt.execute([] {std::this_thread::sleep_for(std::chrono::seconds(10)); std::cerr << "first" << std::endl; });
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+
+        ttt.execute([] {std::cerr << "here" << std::endl; });
+
+        std::this_thread::sleep_for(std::chrono::seconds(11));
+        std::cerr << "end" << std::endl;
+
+    }
+
+    return 0;
     /*{
         ThreadPool tttttt(2);
 
@@ -43,10 +59,7 @@ int main() {
     threadPool.execute(foo);
     threadPool.execute(foo);
 
-
-
-
-std:: cout<<"END MAIN";
+    std:: cout<<"END MAIN";
 
     return 0;
 }
